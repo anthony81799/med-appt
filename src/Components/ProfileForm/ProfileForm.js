@@ -155,6 +155,7 @@ const ProfileForm = ({ onClose }) => { // Ensure onClose is included in the prop
                     <p>Email: {userDetails.email}</p>
                     <p>Phone: {userDetails.phone}</p>
                     <button onClick={handleEdit}>Edit</button>
+                    <button type="button" onClick={onClose}>Close</button>
                 </div>
             )}
         </div>

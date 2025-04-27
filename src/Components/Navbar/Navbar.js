@@ -43,7 +43,7 @@ const Navbar = () => {
         <nav>
             <div className="nav__logo">
                 <Link to="/">
-                    StayHealthy <i style={{color:'#2190FF'}} className="fa fa-user-md"></i>
+                    StayHealthy <i style={{ color: '#2190FF' }} className="fa fa-user-md"></i>
                 </Link>
                 <span>.</span>
             </div>
@@ -71,9 +71,7 @@ const Navbar = () => {
                         <li className="link welcome-user">
                             <span>Welcome, {username}</span>
                             <ul className="dropdown-menu">
-                                {/*<ProfileCard/>*/}
-                                <li><Link to="/profile">Profile</Link></li>
-                                <li><Link to="/report">Report</Link></li>
+                                <li><ProfileCard /></li>
                             </ul>
                         </li>
                         <li className="link">

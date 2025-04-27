@@ -3,7 +3,6 @@ import './ReportsLayout.css'; // Importing CSS for styling
 import { useNavigate } from "react-router-dom";
 
 const ReportLayout = ({ onClose }) => {
-    const [selectedDoctor, setSelectedDoctor] = useState(null);
     const [appointments, setAppointments] = useState([]);
     const navigate = useNavigate();
 
@@ -27,10 +26,6 @@ const ReportLayout = ({ onClose }) => {
         link.href = '/patient_report.pdf';
         link.download = 'patient_report.pdf';
         link.click();
-    };
-
-    const handleClickCancel = () => {
-        navigate("/");
     };
 
     return (
@@ -66,7 +61,6 @@ const ReportLayout = ({ onClose }) => {
                 ))}
                 </tbody>
             </table>
-            <button onClick={handleClickCancel} className="close-button">Close</button>
         </div>
     );
 };

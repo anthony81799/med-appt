@@ -1,6 +1,5 @@
 /* Profile.css */
 
-/* 全局样式 */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -17,7 +16,6 @@ body {
     background-color: #f4f4f4;
 }
 
-/* ProfileCard 样式 */
 .profile-card {
     background-color: white;
     border: 1px solid #ddd;
@@ -39,7 +37,6 @@ body {
     text-align: center;
 }
 
-/* ProfileForm 样式 */
 .profile-container form {
     background-color: white;
     border: 1px solid #ddd;
