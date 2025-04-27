@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import Rating from 'react-rating-stars-component';
+import ReactStars from "react-stars";
 import './GiveReviews.css'; // Importing CSS for styling
 
 const GiveReviews = ({ doctor, onClose }) => {
@@ -56,11 +56,12 @@ const GiveReviews = ({ doctor, onClose }) => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="rating">Rating:</label>
-                    <Rating
+                    <ReactStars
+                        className="rating"
                         count={5}
                         value={formData.rating}
                         onChange={handleRatingChange}
-                        size={240}
+                        size={24}
                         activeColor="#ffd700"
                     />
                 </div>
