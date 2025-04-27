@@ -1,24 +1,40 @@
-.notification-card {
-    background-color: #007bff;
-    /* Blue background color */
-    color: #fff;
-    /* White text color */
+.notification-container {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #2190ff;
+    border: 1px solid #ccc;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it appears above other content */
 }
 
-.notification-title {
-    font-size: 1.5rem;
+.notification-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.notification-content h3 {
+    margin-top: 0;
+}
+
+.notification-content p {
+    margin: 5px 0;
+}
+
+.appointment-details {
     margin-bottom: 10px;
 }
 
-.notification-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.notification-list li {
-    margin-bottom: 5px;
+.cancel-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
 }

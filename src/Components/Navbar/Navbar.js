@@ -71,7 +71,7 @@ const Navbar = () => {
                         <li className="link welcome-user">
                             <span>Welcome, {username}</span>
                             <ul className="dropdown-menu">
-                                <ProfileCard/>
+                                {/*<ProfileCard/>*/}
                                 <li><Link to="/profile">Profile</Link></li>
                                 <li><Link to="/report">Report</Link></li>
                             </ul>

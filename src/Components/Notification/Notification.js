@@ -5,49 +5,54 @@ import './Notification.css';
 const Notification = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
-    const [doctorData, setDoctorData] = useState(null);
-    const [appointmentData, setAppointmentData] = useState(null);
+    const [appointments, setAppointments] = useState([]);
+    const [showNotification, setShowNotification] = useState(true);
 
     useEffect(() => {
         const storedUsername = sessionStorage.getItem('email');
-        const storedDoctorData = JSON.parse(localStorage.getItem('storedAppointments'));
         const storedAppointmentData = JSON.parse(localStorage.getItem('storedAppointments'));
+
+        console.log('Stored Username:', storedUsername);
+        console.log('Stored appointments:', storedAppointmentData);
 
         if (storedUsername) {
             setIsLoggedIn(true);
             setUsername(storedUsername);
         }
 
-        if (storedDoctorData) {
-            setDoctorData(storedDoctorData);
-        }
-
         if (storedAppointmentData) {
             const relevantAppointment = storedAppointmentData[0];
             console.log("relevantAppointment:", relevantAppointment);
-            setAppointmentData(relevantAppointment);
+            setAppointments([relevantAppointment]);
+            setShowNotification(true);
         }
     }, []);
+
+    useEffect(() => {
+        console.log('Appointments state updated:', appointments);
+    }, [appointments]);
+
     return (
         <div>
-            <Navbar ></Navbar>
+            <Navbar />
             {children}
-            {isLoggedIn && appointmentData && (
-                <>
-                    <div className="notification-container">
-                        <div className="notification-card">
-                            <h3 className="notification-title">Appointment Details</h3>
-                            <ul className="notification-list">
-                                <li><strong>User:</strong> {username}</li>
-                                <li><strong>Doctor:</strong> {doctorData?.name}</li>
-                                <li><strong>Speciality:</strong> {appointmentData.doctorSpeciality}</li>
-                                <li> <strong>Name:</strong> {appointmentData.name}</li>
-                                <li> <strong>Phone Number:</strong> {appointmentData.phoneNumber}</li>
-                                <li>  <strong>Date of Appointment:</strong> {appointmentData.appointmentDate}</li>
-                                <li>  <strong>Time Slot:</strong> {appointmentData.selectedSlot}</li></ul>
-                        </div>
+            {isLoggedIn && appointments.length > 0 && showNotification && (
+                <div className="notification-container">
+                    <div className="notification-content">
+                        <h3>Appointment Details</h3>
+                        {appointments.map(appointment => (
+                            <div key={appointment.id} className="appointment-details">
+                                <p><strong>User:</strong> {username}</p>
+                                <p><strong>Doctor:</strong> {appointment.doctorName}</p>
+                                <p><strong>Speciality:</strong> {appointment.doctorSpeciality}</p>
+                                <p><strong>Name:</strong> {appointment.name}</p>
+                                <p><strong>Phone Number:</strong> {appointment.phoneNumber}</p>
+                                <p><strong>Date:</strong> {appointment.date}</p>
+                                <p><strong>Time:</strong> {appointment.time}</p>
+                            </div>
+                        ))}
                     </div>
-                </>
+                </div>
             )}
         </div>
     );
