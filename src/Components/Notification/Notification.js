@@ -12,9 +12,6 @@ const Notification = ({ children }) => {
         const storedUsername = sessionStorage.getItem('email');
         const storedAppointmentData = JSON.parse(localStorage.getItem('storedAppointments'));
 
-        console.log('Stored Username:', storedUsername);
-        console.log('Stored appointments:', storedAppointmentData);
-
         if (storedUsername) {
             setIsLoggedIn(true);
             setUsername(storedUsername);
@@ -22,14 +19,12 @@ const Notification = ({ children }) => {
 
         if (storedAppointmentData) {
             const relevantAppointment = storedAppointmentData[0];
-            console.log("relevantAppointment:", relevantAppointment);
             setAppointments([relevantAppointment]);
             setShowNotification(true);
         }
     }, []);
 
     useEffect(() => {
-        console.log('Appointments state updated:', appointments);
     }, [appointments]);
 
     return (
