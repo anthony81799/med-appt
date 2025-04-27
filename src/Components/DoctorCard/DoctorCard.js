@@ -1,44 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './DoctorCard.css';
-import AppointmentForm from '../AppointmentForm/AppointmentForm';
+import AppointmentForm from '../AppointmentForm/AppointmentForm'
 import { v4 as uuidv4 } from 'uuid';
 
 const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
     const [showModal, setShowModal] = useState(false);
     const [appointments, setAppointments] = useState([]);
 
-    useEffect(() => {
-        const storedAppointments = JSON.parse(localStorage.getItem(name)) || [];
-        setAppointments(storedAppointments);
-    }, [name]);
-
-    const handleBooking = () => {
-        setShowModal(true);
-    };
-
     const handleCancel = (appointmentId) => {
         const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
         setAppointments(updatedAppointments);
-        localStorage.setItem(name, JSON.stringify(updatedAppointments));
+        const storedAppointments = JSON.stringify(updatedAppointments);
+        console.log("storedAppointmentsCancel:", storedAppointments);
+        localStorage.setItem('storedAppointments', storedAppointments);
     };
 
     const handleFormSubmit = (appointmentData) => {
         const newAppointment = {
             id: uuidv4(),
-            doctorName: name,
-            doctorSpeciality: speciality,
             ...appointmentData,
         };
-
-        const existingAppointments = JSON.parse(localStorage.getItem(name)) || [];
-        const updatedAppointments = [...existingAppointments, newAppointment];
-
-
+        const updatedAppointments = [...appointments, newAppointment];
         setAppointments(updatedAppointments);
-        localStorage.setItem(name, JSON.stringify(updatedAppointments));
         setShowModal(false);
+        const storedAppointments = JSON.stringify(updatedAppointments);
+        localStorage.setItem('storedAppointments', storedAppointments);
     };
 
     return (
@@ -59,16 +47,14 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
             <div className="doctor-card-options-container">
                 <Popup
                     style={{ backgroundColor: '#FFFFFF' }}
-                    trigger={
-                        <button className={`book-appointment-btn ${appointments.length > 0 ? 'cancel-appointment' : ''}`}>
-                            {appointments.length > 0 ? (
-                                <div>Cancel Appointment</div>
-                            ) : (
-                                <div>Book Appointment</div>
-                            )}
-                            <div>No Booking Fee</div>
-                        </button>
-                    }
+                    trigger={<button className={`book-appointment-btn ${appointments.length > 0 ? 'cancel-appointment' : ''}`}>
+                        {appointments.length > 0 ? (
+                            <div>Cancel Appointment</div>
+                        ) : (
+                            <div>Book Appointment</div>
+                        )}
+                        <div>No Booking Fee</div>
+                    </button>}
                     modal
                     open={showModal}
                     onClose={() => setShowModal(false)}

@@ -1,0 +1,24 @@
+.notification-card {
+    background-color: #007bff;
+    /* Blue background color */
+    color: #fff;
+    /* White text color */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.notification-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-list li {
+    margin-bottom: 5px;
+}
